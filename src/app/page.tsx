@@ -388,15 +388,20 @@ function SlideNine({ index, openImage }: SlideProps) {
 }
 
 function SlideTen({ index }: SlideProps) {
-  const checks = ["Website and form", "Stripe payment and receipt", "Email and Blog Brief", "Storage and dashboard", "Mobile access and basic SEO"];
+  const coreEvidence = [
+    "CMS: Create · Read · Update · Delete",
+    "Data storage: Stripe metadata · Cloudflare D1/R2",
+    "Admin dashboard: orders · revenue · reports",
+    "Mobile access: browser · Add to Home Screen",
+  ];
   return (
     <section className="slide conclusion-slide">
       <Motif />
       <Header index={index} eyebrow="RESULTS AND CONCLUSION" />
       <div className="conclusion-copy"><p className="red-kicker">The result</p><h2>The Prototype<br /><span>Works.</span></h2><p className="lead">SiteTarik turns a customer request into organised digital content and a clear final delivery process.</p>
-        <div className="result-row"><strong>14/14</strong><span>functional tests<br />passed</span></div>
+        <div className="result-row"><strong>14/14</strong><span>functional checks<br />passed</span></div>
       </div>
-      <div className="result-panel"><h3>Tested successfully</h3>{checks.map((check) => <p key={check}><span><Check size={16} /></span>{check}</p>)}<div className="limit-note"><BellRing size={18} /><span><strong>Honest limitation:</strong> paid-client validation was not achieved.</span></div></div>
+      <div className="result-panel"><h3>Core prototype evidence</h3>{coreEvidence.map((item) => <p key={item}><span><Check size={16} /></span>{item}</p>)}<p className="test-coverage">Also checked: payment, notification, Blog Brief, tracking and basic SEO.</p><div className="limit-note"><BellRing size={18} /><span><strong>Honest limitation:</strong> paid-client validation was not achieved.</span></div></div>
       <div className="closing-line">SiteTarik is not only a service website. It is a working prototype that collects, stores, organises and manages digital content from customer request to final delivery — <strong>therefore achieving CLO1.</strong></div>
       <p className="speaker-line">The technical prototype worked and achieved CLO1. The honest limitation is commercial validation: the target of ten paid clients was not achieved.</p>
     </section>

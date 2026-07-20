@@ -96,6 +96,9 @@ h2 { font-size: clamp(38px,5vw,90px); line-height: 1.02; position:relative; z-in
 @keyframes slide-in { from { opacity:0; transform:translateX(1.2%); } to { opacity:1; transform:none; } } @keyframes fade-in { from { opacity:0 } to { opacity:1 } }
 @media (max-width: 700px) { .slide-nav { right:.45rem; }.fullscreen-toggle { top:.6rem; right:.6rem; }.speaker-line { display:none; } }
 
+/* Slide 10: supporting checks are secondary to the four core UiTM prototype evidence items. */
+.result-panel > .test-coverage { margin-top:1rem; padding-top:.85rem; border-top:2px solid var(--line); color:var(--muted); font-size:clamp(8px,.8vw,14px); font-weight:500; line-height:1.35; }
+
 /* Final Slide 4 composition: occupy the middle and lower part of the canvas. */
 .clo-heading { top:25%; }
 .clo-figure { top:23%; right:7%; width:46%; }
