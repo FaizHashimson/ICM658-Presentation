@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Design QA comparison</title>
+    <style>
+      * { box-sizing: border-box; }
+      body { margin: 0; padding: 24px; background: #ececee; color: #171719; font-family: Arial, sans-serif; }
+      h1 { margin: 0 0 18px; font-size: 20px; }
+      .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+      figure { margin: 0; padding: 14px; background: white; border-radius: 18px; }
+      figcaption { padding: 0 0 10px; font-weight: 700; }
+      img { display: block; width: 100%; height: auto; border: 1px solid #ddd; }
+    </style>
+  </head>
+  <body>
+    <h1>Slide 1: supplied visual reference versus rendered implementation</h1>
+    <div class="grid">
+      <figure><figcaption>Source reference: Canva Design/1.png</figcaption><img src="/qa-source-slide-1.png" alt="Source visual reference" /></figure>
+      <figure><figcaption>Implementation: SiteTarik web deck, Slide 1</figcaption><img src="/qa-implementation-slide-1.png" alt="Rendered implementation" /></figure>
+    </div>
+  </body>
+</html>
