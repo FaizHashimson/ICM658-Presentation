@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Keep the presentation free of the Next.js development indicator.
+  devIndicators: false,
 };
 
 export default nextConfig;
