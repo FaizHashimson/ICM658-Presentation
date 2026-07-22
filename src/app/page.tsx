@@ -48,6 +48,7 @@ const blogImage = "/assets/blog-preview.png";
 const mobileImage = "/assets/mobile-view.png";
 const gmailNotificationImage = "/assets/gmail-order-notification.png";
 const hatiwajaPilotImage = "/assets/hatiwaja-pilot-home.png";
+const storageMapImage = "/assets/sitetarik-storage-map.png";
 const mobileDemoVideo = "/assets/icm658-mobile-demo.mp4";
 
 function WhatsAppIcon({ size = 24, className = "" }: { size?: number; className?: string }) {
@@ -186,14 +187,14 @@ function SlideFour({ index }: SlideProps) {
       <Header index={index} eyebrow="CLO1: CONSTRUCT A DIGITAL CONTENT MANAGEMENT PROTOTYPE" />
       <div className="clo-heading"><h2>Collect <span>→ Organise →</span> Manage → Deliver</h2></div>
       <figure className="clo-rail">
-        <article className="rail-stage"><span className="rail-node">01</span><h3>Collect</h3><p>Customer details</p><p>Website URL</p><p>Blog Brief</p></article>
-        <article className="rail-stage"><span className="rail-node">02</span><h3>Organise</h3><p>Stripe metadata</p><p>Cloudflare D1</p><p>Cloudflare R2</p></article>
-        <article className="rail-stage"><span className="rail-node">03</span><h3>Manage</h3><p>Admin review</p><p>Resend → Gmail</p></article>
-        <article className="rail-stage rail-deliver"><span className="rail-node">04</span><h3>Deliver</h3><p>Final website link</p><p>via WhatsApp</p></article>
-        <figcaption className="figure-caption">Figure 3. SiteTarik digital content management flow.</figcaption>
+        <article className="rail-stage"><span className="rail-node">01</span><h3>Collect</h3><p>Customer request</p><p>Website URL</p><p>Blog Brief</p></article>
+        <article className="rail-stage"><span className="rail-node">02</span><h3>Organise</h3><p>Stripe: payment + brief</p><p>D1: SiteTarik text</p><p>R2: SiteTarik images</p></article>
+        <article className="rail-stage"><span className="rail-node">03</span><h3>Manage</h3><p>Resend: order email</p><p>CMS: SiteTarik blog</p></article>
+        <article className="rail-stage rail-deliver"><span className="rail-node">04</span><h3>Deliver</h3><p>Customer link</p><p>via WhatsApp</p></article>
+        <figcaption className="figure-caption">Figure 3. SiteTarik data collection, storage and delivery flow.</figcaption>
       </figure>
       <p className="tech-footer">Next.js · React · TypeScript · Tailwind CSS · Stripe · Cloudflare D1/R2 · Resend · WhatsApp</p>
-      <p className="speaker-line">This is digital content management. SiteTarik collects business information, stores each type of content in the correct place, helps the administrator manage it, and supports delivery to the customer.</p>
+      <p className="speaker-line">Stripe holds customer payment and Blog Brief data. Resend notifies the administrator; Cloudflare D1/R2 are only for SiteTarik’s own blog.</p>
     </section>
   );
 }
@@ -414,6 +415,7 @@ export default function Home() {
   const [current, setCurrent] = useState(0);
   const [lightbox, setLightbox] = useState<LightboxImage>(null);
   const [auditReveal, setAuditReveal] = useState(false);
+  const [storageReveal, setStorageReveal] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const wheelLock = useRef(false);
   const stageRef = useRef<HTMLDivElement>(null);
@@ -442,6 +444,18 @@ export default function Home() {
         }
         return;
       }
+      if (storageReveal) {
+        if (event.key.toLowerCase() === "r" || event.key === "Escape") {
+          event.preventDefault();
+          setStorageReveal(false);
+        }
+        return;
+      }
+      if (current === 3 && event.key.toLowerCase() === "r") {
+        event.preventDefault();
+        setStorageReveal(true);
+        return;
+      }
       if (current === 7 && event.key.toLowerCase() === "r") {
         event.preventDefault();
         setAuditReveal(true);
@@ -452,7 +466,7 @@ export default function Home() {
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [auditReveal, current, goTo, lightbox]);
+  }, [auditReveal, current, goTo, lightbox, storageReveal]);
 
   useEffect(() => {
     const updateFullscreenState = () => setIsFullscreen(Boolean(document.fullscreenElement));
@@ -463,11 +477,12 @@ export default function Home() {
   useEffect(() => {
     stageRef.current?.scrollTo({ top: 0, behavior: "auto" });
     setAuditReveal(false);
+    setStorageReveal(false);
   }, [current]);
 
   const onWheel = (event: React.WheelEvent) => {
     if (window.matchMedia("(max-width: 800px)").matches) return;
-    if (lightbox || wheelLock.current || Math.abs(event.deltaY) < 15) return;
+    if (lightbox || auditReveal || storageReveal || wheelLock.current || Math.abs(event.deltaY) < 15) return;
     wheelLock.current = true;
     goTo(current + (event.deltaY > 0 ? 1 : -1));
     window.setTimeout(() => { wheelLock.current = false; }, 560);
@@ -495,6 +510,19 @@ export default function Home() {
             <article><div className="audit-reveal-label"><span>After</span><small>Website strengths review</small></div><img src={hatiwajaAuditAfterImage} alt="Hati Waja website review after the refresh" /><p>SEO Grade A · Best Practices Grade A</p></article>
           </div>
           <p className="audit-reveal-note">A short supporting snapshot — the hosted pilot website remains the main demonstration. Press <kbd>R</kbd> or <kbd>Esc</kbd> to close.</p>
+        </section>
+      </div> : null}
+      {storageReveal ? <div className="storage-reveal" role="dialog" aria-modal="true" aria-label="SiteTarik data storage map" onClick={() => setStorageReveal(false)}>
+        <section className="storage-reveal-panel" onClick={(event) => event.stopPropagation()}>
+          <button className="storage-reveal-close" onClick={() => setStorageReveal(false)} aria-label="Close storage map"><X size={20} /></button>
+          <p className="storage-reveal-kicker">Optional storage map</p>
+          <h2>Two separate content areas</h2>
+          <p className="storage-reveal-intro">Customer order information stays in Stripe. Cloudflare is used only for SiteTarik’s own blog content.</p>
+          <img className="storage-reveal-image" src={storageMapImage} alt="Diagram showing separate Stripe customer-order and Cloudflare CMS-content storage flows" />
+          <div className="storage-reveal-summary">
+            <article><strong>Stripe customer record</strong><span>Payment, receipt, customer, package and Blog Brief details. Resend sends the order email for manual handling.</span></article>
+            <article><strong>Cloudflare CMS content</strong><span>D1 stores SiteTarik blog text. R2 stores SiteTarik blog images. This is separate from the RM220 customer blog draft.</span></article>
+          </div>
         </section>
       </div> : null}
     </main>
