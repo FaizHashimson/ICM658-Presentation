@@ -568,7 +568,6 @@ h1,h2,h3,strong { letter-spacing:-.025em; }
 .audit-reveal-comparison img { display:block; width:100%; height:clamp(12rem,25vw,21rem); object-fit:contain; border:1px solid #efeff1; border-radius:10px; background:#f7f7f8; }
 .audit-reveal-comparison article>p { margin-top:.6rem; color:#444; font-size:clamp(10px,.88vw,16px); font-weight:800; text-align:center; }
 .audit-reveal-arrow { width:2rem; color:var(--red); justify-self:center; }
-.audit-reveal-note { margin-top:1rem; padding-top:1rem; border-top:1px solid #e8e8eb; color:#646468; font-size:clamp(10px,.82vw,15px); text-align:center; }.audit-reveal-note kbd { padding:.15rem .38rem; border:1px solid #d7d7da; border-radius:4px; color:var(--ink); background:#f7f7f8; font-family:inherit; font-size:.9em; font-weight:800; }
 
 @media (max-width: 800px) {
   .audit-reveal { padding:1rem; place-items:start center; overflow:auto; }
@@ -578,7 +577,6 @@ h1,h2,h3,strong { letter-spacing:-.025em; }
   .audit-reveal-comparison { grid-template-columns:1fr; gap:.8rem; margin-top:1.2rem; }
   .audit-reveal-arrow { transform:rotate(90deg); }
   .audit-reveal-comparison img { height:auto; max-height:18rem; }
-  .audit-reveal-note { font-size:.78rem; }
 }
 
 /* Optional Slide 4 storage-map reveal: opened only with the R key. */

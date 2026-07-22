@@ -509,7 +509,6 @@ export default function Home() {
             <ArrowRight className="audit-reveal-arrow" />
             <article><div className="audit-reveal-label"><span>After</span><small>Website strengths review</small></div><img src={hatiwajaAuditAfterImage} alt="Hati Waja website review after the refresh" /><p>SEO Grade A · Best Practices Grade A</p></article>
           </div>
-          <p className="audit-reveal-note">A short supporting snapshot — the hosted pilot website remains the main demonstration. Press <kbd>R</kbd> or <kbd>Esc</kbd> to close.</p>
         </section>
       </div> : null}
       {storageReveal ? <div className="storage-reveal" role="dialog" aria-modal="true" aria-label="SiteTarik data storage map" onClick={() => setStorageReveal(false)}>
